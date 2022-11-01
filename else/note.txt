@@ -1,0 +1,7 @@
+https://www.youtube.com/watch?v=riDzcEQbX6k
+https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
+
+https://www.ispringsolutions.com/blog/how-to-create-timed-quiz
+
+Github에 quiz web app과 같은 자료 많이 있음 - 참고하기
+HTML, CSS, JavaScript, and React ?
