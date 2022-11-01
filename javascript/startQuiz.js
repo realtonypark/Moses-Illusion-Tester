@@ -15,15 +15,16 @@ var ansEval = document.querySelector("#evaluate-answer");
 var ansEvalFinal = document.querySelector("#evaluate-answer-final");
 var timer = document.querySelector("#timer");
 
+
 var bell = new Audio();
-bell.src = "./assets/Ting-Popup_Pixels-349896185.mp3";
+//bell.src = "./오디오 url";
 var buzzer = new Audio();
-buzzer.src = "./assets/Buzzer-SoundBible.com-188422102.mp3";
+//buzzer.src = "./오디오 url";
 
 let currentQuestionIndex = 0;
 let q = questions[currentQuestionIndex];
 let score = 0;
-var timeLeft = 75;
+var timeLeft = 100;
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 //EVENTS
@@ -220,6 +221,6 @@ function pushScores() {
     console.log(initials, score);
     window.location.href = "HighScores.html";
   } else {
-    alert("Enter your initials to log your score!");
+    alert("기수와 이름을 입력해주세요!");
   }
 }
