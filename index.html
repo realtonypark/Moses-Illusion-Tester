@@ -30,7 +30,6 @@
     <title>Moses Illusion Tester</title>
   </head>
 
-
   <body>
     <nav
       class="navbar navbar-light bg-white my-2 justify-content-lg-between justify-content-md-around justify-content-sm-around"
@@ -88,8 +87,8 @@
         <div class="col-md">
           <h2 id="question-title"></h2>
           <div id="answers" class="btn-group-vertical">
-            <button id="0"></button>
-            <button id="1"></button>
+            <button id="0", onclick="startNow()"></button>
+            <button id="1", onclick="startNow()"></button>
           </div>
           <div id="evaluate-answer"></div>
         </div>
@@ -161,6 +160,6 @@
     <!-- Revised code from here -->
     <button onclick="startNow()">Start</button>
     <button onclick="endNow()">End</button>
-    
+
   </body>
 </html>

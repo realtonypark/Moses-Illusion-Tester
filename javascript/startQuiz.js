@@ -1,7 +1,3 @@
-// var jsQuiz = document.querySelector("#js-quiz");
-// var htmlQuiz = document.querySelector("#html-quiz");
-// var cssQuiz = document.querySelector("#css-quiz");
-
 var startBtn = document.querySelector("#startQuiz");
 var startContainer = document.querySelector("#start-container");
 var questionContainer = document.querySelector("#question-container");
@@ -14,7 +10,6 @@ var answers = document.querySelector("#answers");
 var ansEval = document.querySelector("#evaluate-answer");
 var ansEvalFinal = document.querySelector("#evaluate-answer-final");
 var timer = document.querySelector("#timer");
-
 var bell = new Audio();
 //bell.src = "./오디오 url";
 var buzzer = new Audio();
@@ -23,17 +18,13 @@ var buzzer = new Audio();
 let currentQuestionIndex = 0;
 let q = questions[currentQuestionIndex];
 let score = 0;
-var timeLeft = 100;
+var timeLeft = 10;
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 window.addEventListener("load", renderQuestion);
-
 startBtn.addEventListener("click", Start);
-
 answers.addEventListener("click", checkAnswer);
-
 finalAnswer.addEventListener("click", finalScorePage);
-
 submitInitials.addEventListener("click", pushScores);
 
 //FUNCTIONS 
@@ -45,8 +36,7 @@ function Start() {
   questionContainer.setAttribute("style", "display: block");
   startTimer();
 }
-//Time interval starts at 75, decreases by 15 if question answered incorrectly,
-//clears at 0 and when last question answered
+
 function startTimer() {
   var timeInterval = setInterval(function() {
     timeLeft--;
@@ -56,10 +46,11 @@ function startTimer() {
     icon.setAttribute("class", "fas fa-hourglass-start fa-spin");
     timer.prepend(icon);
     if (timeLeft <= 0) {
-      timer.textContent = "|  Time's up!";
+      timer.textContent = "|  시간이 종료되었습니다.";
       timer.style.backgroundColor = "red";
       timer.style.borderColor = "red";
       timer.style.color = "#ffffff";
+      
       icon.setAttribute("class", "fas fa-hourglass-end");
       timer.prepend(icon);
       clearInterval(timeInterval);
@@ -69,6 +60,7 @@ function startTimer() {
         "Your final score is " + (score += timeLeft) + "!";
       finalScore.setAttribute("class", "score");
     }
+    
     if (currentQuestionIndex === 5) {
       timer.textContent = "|  Great work!";
       timer.style.backgroundColor = "green";
@@ -78,17 +70,7 @@ function startTimer() {
       timer.prepend(icon);
       timer.setAttribute("class", "timer");
       clearInterval(timeInterval);
-    }
-    if (score <= 0 && currentQuestionIndex === 5) {
-      timer.textContent = "|  Submit your score and try again to rank higher!";
-      timer.style.backgroundColor = "red";
-      timer.style.borderColor = "red";
-      timer.style.color = "#ffffff";
-      icon.setAttribute("class", "fas fa-hourglass-end");
-      timer.prepend(icon);
-      timer.setAttribute("class", "timer");
-      clearInterval(timeInterval);
-    }
+    }  
   }, 1000);
 }
 
@@ -97,8 +79,6 @@ function renderQuestion() {
   document.querySelector("#question-title").innerHTML = q.title;
   document.getElementById("0").innerHTML = "1. " + q.choices[0];
   document.getElementById("1").innerHTML = "2. " + q.choices[1];
-  document.getElementById("2").innerHTML = "3. " + q.choices[2];
-  document.getElementById("3").innerHTML = "4. " + q.choices[3];
 }
 
 //Check the index of the choice linked to button against answer in array
@@ -114,27 +94,6 @@ function checkAnswer(event) {
   if (userAnswer === correctAnswer) {
     score += 10;
     console.log(score);
-  } else timeLeft -= 15;
-  if (userAnswer === correctAnswer) {
-    ansEval.textContent = "Correct Answer!";
-    ansEval.style.color = "green";
-    ansEval.style.fontSize = "20px";
-    ansEval.style.fontWeight = "bolder";
-    setTimeout(function() {
-      ansEval.textContent = "";
-    }, 3000);
-    console.log("Correct", ansEval);
-    bell.play();
-  } else {
-    ansEval.textContent = "Wrong Answer!";
-    ansEval.style.color = "red";
-    ansEval.style.fontSize = "20px";
-    ansEval.style.fontWeight = "bolder";
-    console.log("Wrong", ansEval);
-    setTimeout(function() {
-      ansEval.textContent = "";
-    }, 3000);
-    buzzer.play();
   }
   if (userAnswer === correctAnswer && currentQuestionIndex === 4) {
     ansEvalFinal.textContent = "Correct Answer!";
@@ -155,19 +114,19 @@ function checkAnswer(event) {
       ansEvalFinal.textContent = "";
     }, 3000);
   }
-
   nextQuestion();
 }
 
 //has to be after check answer
 function nextQuestion() {
+  timeLeft = 10;
+  //startTimer();
   console.log("incrementing");
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     q = questions[currentQuestionIndex];
     renderQuestion();
   }
-
   console.log(currentQuestionIndex);
 }
 
@@ -200,8 +159,45 @@ function pushScores() {
   }
 }
 
+function startNow() {
+  startTime = new Date();
+};
+
+function endNow() {
+  endTime = new Date();
+  var timeDiff = endTime - startTime; //in ms
+
+  // strip the ms
+  timeDiff /= 1000;
+
+  //console.log(timeDiff + " seconds");
+  alert(timeDiff + " seconds");
+}
+
 // Revised codes from here
 
+/*
+// Wait for 1 min before 
+//setTimeout( function ( ) { alert( "10초 뒤에 시작됩니다." ); }, 50000 ); // 이 기능 빼는 게 나을 듯
+// Question for 4.5 sec
+// Answer Input
+document.onkeydown = checkKey;
+function checkKey(e) {
+    e = e || window.event;
+
+    if (e.keyCode == '37') {
+        // left arrow(True)
+        alert("True를 선택했습니다.")
+    }
+    else if (e.keyCode == '39') {
+       // right arrow(False)
+       alert("False를 선택했습니다.")
+    }
+    else alert("True는 왼쪽 화살표, False는 오른쪽 화살표를 눌러주세요.")
+}
+*/
+
+/*
 // Time Measuring Demo
 var startTime, endTime;
 
@@ -219,24 +215,4 @@ function endNow() {
   //console.log(timeDiff + " seconds");
   alert(timeDiff + " seconds");
 }
-
-// Wait for 1 min before 
-setTimeout( function ( ) { alert( "10초 뒤에 시작됩니다." ); }, 50000 ); // 이 기능 빼는 게 나을 듯
-
-// Question for 4.5 sec
-
-// Answer Input
-document.onkeydown = checkKey;
-function checkKey(e) {
-    e = e || window.event;
-
-    if (e.keyCode == '37') {
-        // left arrow(True)
-        alert("True를 선택했습니다.")
-    }
-    else if (e.keyCode == '39') {
-       // right arrow(False)
-       alert("False를 선택했습니다.")
-    }
-    else alert("True는 왼쪽 화살표, False는 오른쪽 화살표를 눌러주세요.")
-}
+*/
