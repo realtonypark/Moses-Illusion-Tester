@@ -21,6 +21,8 @@ let score = 0;
 var timeLeft = 10;
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
+let correctAnswerNum = 0;
+
 window.addEventListener("load", renderQuestion);
 startBtn.addEventListener("click", Start);
 answers.addEventListener("click", checkAnswer);
@@ -56,9 +58,11 @@ function startTimer() {
       clearInterval(timeInterval);
       questionContainer.setAttribute("style", "display: none");
       scoreContainer.setAttribute("style", "display: block");
-      finalScore.textContent =
-        "Your final score is " + (score += timeLeft) + "!";
-      finalScore.setAttribute("class", "score");
+      
+      //finalScore.textContent = "Your final score is " + (score += timeLeft) + "!";
+      finalScore.textContent = "맞은 문제의 개수" + (correctAnswerNum) + "/5";
+      //finalScore.setAttribute("class", "score");
+      finalScore.setAttribute("class", "correctAnswerNum");
     }
     
     if (currentQuestionIndex === 5) {
@@ -94,6 +98,7 @@ function checkAnswer(event) {
   if (userAnswer === correctAnswer) {
     score += 10;
     console.log(score);
+    correctAnswerNum += 1;
   }
   if (userAnswer === correctAnswer && currentQuestionIndex === 4) {
     ansEvalFinal.textContent = "Correct Answer!";
@@ -136,8 +141,10 @@ function finalScorePage(event) {
   if (event.target.matches("button") && currentQuestionIndex === 5) {
     questionContainer.setAttribute("style", "display: none");
     scoreContainer.setAttribute("style", "display: block");
-    finalScore.textContent = "Your final score is " + (score += timeLeft) + "!";
-    finalScore.setAttribute("class", "score");
+    //finalScore.textContent = "Your final score is " + (score += timeLeft) + "!";
+    finalScore.textContent = "맞은 문제의 개수" + (correctAnswerNum) + "/5";
+    //finalScore.setAttribute("class", "score");
+    finalScore.setAttribute("class", "correctAnswerNum");
   }
   console.log("finalscorepage");
 }
