@@ -1,7 +1,14 @@
 https://www.youtube.com/watch?v=riDzcEQbX6k
 https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
+https://www.youtube.com/watch?v=pwabv9UtrNE
+
+https://stackoverflow.com/questions/41632942/how-to-measure-time-elapsed-on-javascript
+
+https://i.ytimg.com/an_webp/mHJDtDM_wHc/mqdefault_6s.webp?du=3000&sqp=CMDMh5sG&rs=AOn4CLBOnVKUs7pdGELSuP9U4zBlfgg6cA
 
 https://www.ispringsolutions.com/blog/how-to-create-timed-quiz
 
-Github에 quiz web app과 같은 자료 많이 있음 - 참고하기
-HTML, CSS, JavaScript, and React ?
+momentjs, callback 함수, timeout 함수
+
+Github에 quiz web app과 같은 자료 많으니 참고하기
+ReactJS?

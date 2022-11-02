@@ -15,7 +15,6 @@ var ansEval = document.querySelector("#evaluate-answer");
 var ansEvalFinal = document.querySelector("#evaluate-answer-final");
 var timer = document.querySelector("#timer");
 
-
 var bell = new Audio();
 //bell.src = "./오디오 url";
 var buzzer = new Audio();
@@ -27,29 +26,6 @@ let score = 0;
 var timeLeft = 100;
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-//EVENTS
-
-//Was able to load new script but couldn't get it to execute
-// htmlQuiz.addEventListener("click", function() {
-//   var js_script = document.createElement("script");
-//   js_script.setAttribute("type", "text/javascript");
-//   js_script.onload = function() {
-//     //at this tine the script is loaded
-//     console.log("Script loaded!");
-//     console.log(js_script);
-//   };
-//   js_script.setAttribute("src", "javascript/htmlQuestions.js");
-//   js_script.setAttribute("async", "true");
-//   document.getElementsByTagName("head")[0].appendChild(js_script);
-//   // document.body.insertBefore(js_script, document.body.childNodes[25]);
-// });
-// $("html-quiz").on("click", function(event) {
-//   $.getScript("javascript/htmlQuestions.js", function() {
-//     alert("Script loaded and executed.");
-//     // here you can use anything you defined in the loaded script
-//   });
-// });
-
 window.addEventListener("load", renderQuestion);
 
 startBtn.addEventListener("click", Start);
@@ -60,8 +36,7 @@ finalAnswer.addEventListener("click", finalScorePage);
 
 submitInitials.addEventListener("click", pushScores);
 
-//FUNCTIONS
-
+//FUNCTIONS 
 function Start() {
   currentQuestionIndex = 0;
   console.log(highscores);
@@ -223,4 +198,45 @@ function pushScores() {
   } else {
     alert("기수와 이름을 입력해주세요!");
   }
+}
+
+// Revised codes from here
+
+// Time Measuring Demo
+var startTime, endTime;
+
+function startNow() {
+  startTime = new Date();
+};
+
+function endNow() {
+  endTime = new Date();
+  var timeDiff = endTime - startTime; //in ms
+
+  // strip the ms
+  timeDiff /= 1000;
+
+  //console.log(timeDiff + " seconds");
+  alert(timeDiff + " seconds");
+}
+
+// Wait for 1 min before 
+setTimeout( function ( ) { alert( "10초 뒤에 시작됩니다." ); }, 50000 ); // 이 기능 빼는 게 나을 듯
+
+// Question for 4.5 sec
+
+// Answer Input
+document.onkeydown = checkKey;
+function checkKey(e) {
+    e = e || window.event;
+
+    if (e.keyCode == '37') {
+        // left arrow(True)
+        alert("True를 선택했습니다.")
+    }
+    else if (e.keyCode == '39') {
+       // right arrow(False)
+       alert("False를 선택했습니다.")
+    }
+    else alert("True는 왼쪽 화살표, False는 오른쪽 화살표를 눌러주세요.")
 }
