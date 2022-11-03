@@ -60,13 +60,13 @@ function startTimer() {
       scoreContainer.setAttribute("style", "display: block");
       
       //finalScore.textContent = "Your final score is " + (score += timeLeft) + "!";
-      finalScore.textContent = "맞은 문제의 개수" + (correctAnswerNum) + "/5";
+      finalScore.textContent = "맞은 문제의 개수: " + (correctAnswerNum) + "/5";
       //finalScore.setAttribute("class", "score");
       finalScore.setAttribute("class", "correctAnswerNum");
     }
     
     if (currentQuestionIndex === 5) {
-      timer.textContent = "|  Great work!";
+      timer.textContent = "|  종료";
       timer.style.backgroundColor = "green";
       timer.style.borderColor = "green";
       timer.style.color = "#ffffff";
@@ -142,7 +142,7 @@ function finalScorePage(event) {
     questionContainer.setAttribute("style", "display: none");
     scoreContainer.setAttribute("style", "display: block");
     //finalScore.textContent = "Your final score is " + (score += timeLeft) + "!";
-    finalScore.textContent = "맞은 문제의 개수" + (correctAnswerNum) + "/5";
+    finalScore.textContent = "맞은 문제의 개수: " + (correctAnswerNum) + "/5";
     //finalScore.setAttribute("class", "score");
     finalScore.setAttribute("class", "correctAnswerNum");
   }
