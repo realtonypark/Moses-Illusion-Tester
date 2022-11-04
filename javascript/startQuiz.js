@@ -60,12 +60,12 @@ function startTimer() {
       scoreContainer.setAttribute("style", "display: block");
       
       //finalScore.textContent = "Your final score is " + (score += timeLeft) + "!";
-      finalScore.textContent = "맞은 문제의 개수: " + (correctAnswerNum) + "/5";
+      finalScore.textContent = "맞은 문제의 개수: " + (correctAnswerNum) + "/80";
       //finalScore.setAttribute("class", "score");
       finalScore.setAttribute("class", "correctAnswerNum");
     }
     
-    if (currentQuestionIndex === 5) {
+    if (currentQuestionIndex === 80) { //80으로 수정
       timer.textContent = "|  종료";
       timer.style.backgroundColor = "green";
       timer.style.borderColor = "green";
@@ -96,15 +96,15 @@ function checkAnswer(event) {
     console.log(correctAnswer);
   }
   if (userAnswer === correctAnswer) {
-    score += 10;
-    console.log(score);
+    //score += 10;
+    //console.log(score);
     correctAnswerNum += 1;
   }
-  if (userAnswer === correctAnswer && currentQuestionIndex === 4) {
-    ansEvalFinal.textContent = "Correct Answer!";
-    ansEvalFinal.style.color = "green";
-    ansEvalFinal.style.fontSize = "20px";
-    ansEvalFinal.style.fontWeight = "bolder";
+  if (userAnswer === correctAnswer && currentQuestionIndex === 79) { // currentQuestionIndex를 문제 개수에 따라 바꿔줘야 함 (5문제 -> 4, 80문제 -> 79)
+    ansEval.textContent = "Correct Answer!";
+    ansEval.style.color = "green";
+    ansEval.style.fontSize = "20px";
+    ansEval.style.fontWeight = "bolder";
     console.log("Correct", ansEvalFinal);
     setTimeout(function() {
       ansEvalFinal.textContent = "";
@@ -138,11 +138,11 @@ function nextQuestion() {
 //displays final score page wih final score
 function finalScorePage(event) {
   q = questions[currentQuestionIndex];
-  if (event.target.matches("button") && currentQuestionIndex === 5) {
+  if (event.target.matches("button") && currentQuestionIndex === 80) {
     questionContainer.setAttribute("style", "display: none");
     scoreContainer.setAttribute("style", "display: block");
     //finalScore.textContent = "Your final score is " + (score += timeLeft) + "!";
-    finalScore.textContent = "맞은 문제의 개수: " + (correctAnswerNum) + "/5";
+    finalScore.textContent = "맞은 문제의 개수: " + (correctAnswerNum) + "/80";
     //finalScore.setAttribute("class", "score");
     finalScore.setAttribute("class", "correctAnswerNum");
   }
