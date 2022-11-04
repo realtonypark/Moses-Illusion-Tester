@@ -65,7 +65,7 @@ function startTimer() {
       finalScore.setAttribute("class", "correctAnswerNum");
     }
     
-    if (currentQuestionIndex === 80) { //80으로 수정
+    if (currentQuestionIndex === 80) {
       timer.textContent = "|  종료";
       timer.style.backgroundColor = "green";
       timer.style.borderColor = "green";
@@ -100,8 +100,7 @@ function checkAnswer(event) {
     //console.log(score);
     correctAnswerNum += 1;
   }
-  if (userAnswer === correctAnswer && currentQuestionIndex === 79) { // currentQuestionIndex를 문제 개수에 따라 바꿔줘야 함 (5문제 -> 4, 80문제 -> 79)
-    ansEval.textContent = "Correct Answer!";
+  if (userAnswer === correctAnswer && currentQuestionIndex === 79) {
     ansEval.style.color = "green";
     ansEval.style.fontSize = "20px";
     ansEval.style.fontWeight = "bolder";
@@ -154,11 +153,13 @@ function pushScores() {
   var initials = enterInitials.value;
   var newScores = {
     initials,
+    //correctAnswerNum
     score
   };
   if (initials != "") {
     highscores.push(newScores);
     localStorage.setItem("highscores", JSON.stringify(highscores));
+    //console.log(initials, correctAnswerNum);
     console.log(initials, score);
     window.location.href = "HighScores.html";
   } else {
@@ -180,46 +181,3 @@ function endNow() {
   //console.log(timeDiff + " seconds");
   alert(timeDiff + " seconds");
 }
-
-// Revised codes from here
-
-/*
-// Wait for 1 min before 
-//setTimeout( function ( ) { alert( "10초 뒤에 시작됩니다." ); }, 50000 ); // 이 기능 빼는 게 나을 듯
-// Question for 4.5 sec
-// Answer Input
-document.onkeydown = checkKey;
-function checkKey(e) {
-    e = e || window.event;
-
-    if (e.keyCode == '37') {
-        // left arrow(True)
-        alert("True를 선택했습니다.")
-    }
-    else if (e.keyCode == '39') {
-       // right arrow(False)
-       alert("False를 선택했습니다.")
-    }
-    else alert("True는 왼쪽 화살표, False는 오른쪽 화살표를 눌러주세요.")
-}
-*/
-
-/*
-// Time Measuring Demo
-var startTime, endTime;
-
-function startNow() {
-  startTime = new Date();
-};
-
-function endNow() {
-  endTime = new Date();
-  var timeDiff = endTime - startTime; //in ms
-
-  // strip the ms
-  timeDiff /= 1000;
-
-  //console.log(timeDiff + " seconds");
-  alert(timeDiff + " seconds");
-}
-*/
