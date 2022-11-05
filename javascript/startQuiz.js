@@ -1,23 +1,4 @@
-/** Output Printing */
-/*
-var output = [
-  {
-    number: "#1",
-    startTime: 0,
-    endTime: 0
-  },
-  {
-    number: "#2",
-    startTime: 0,
-    endTime: 0
-  }
-]
-*/
-var output = [
-]
-
-/** Time Counting */
-
+//ATTRIBUTES
 var startBtn = document.querySelector("#startQuiz");
 var startContainer = document.querySelector("#start-container");
 var questionContainer = document.querySelector("#question-container");
@@ -45,7 +26,6 @@ answers.addEventListener("click", checkAnswer);
 finalAnswer.addEventListener("click", finalScorePage);
 submitInitials.addEventListener("click", pushScores);
 
-
 //FUNCTIONS 
 function Start() {
   currentQuestionIndex = 0;
@@ -54,7 +34,6 @@ function Start() {
   startContainer.setAttribute("style", "display: none");
   questionContainer.setAttribute("style", "display: block");
   startTimer();
-  startNow();
 }
 
 function startTimer() {
@@ -108,7 +87,6 @@ function checkAnswer(event) {
   q = questions[currentQuestionIndex];
   //event.preventDefault();
   if (event.target.matches("button")) {
-    
     var userAnswer = questions[currentQuestionIndex].choices[event.target.id];
     console.log(userAnswer);
     var correctAnswer = questions[currentQuestionIndex].answer;
@@ -116,12 +94,19 @@ function checkAnswer(event) {
   }
   if (userAnswer === correctAnswer) {
     correctAnswerNum += 1;
+    output[currentQuestionIndex].tf = "정답";
+  }
+  else{
+    output[currentQuestionIndex].tf = "오답";
   }
   nextQuestion();
 }
 
-//has to be after check answer
+//has to be after checkAnswer
 function nextQuestion() {
+  endNow();
+  startNow();
+  console.log(output);
   timeLeft = 10;
   //startTimer();
   console.log("incrementing");
@@ -139,12 +124,14 @@ function finalScorePage(event) {
   if (event.target.matches("button") && currentQuestionIndex === 80) {
     questionContainer.setAttribute("style", "display: none");
     scoreContainer.setAttribute("style", "display: block");
-    //finalScore.textContent = "Your final score is " + (score += timeLeft) + "!";
+
     finalScore.textContent = "맞은 문제의 개수: " + (correctAnswerNum) + "/80";
-    //finalScore.setAttribute("class", "score");
+    //finalScore.textContent = output;
+    //alert(output);
     finalScore.setAttribute("class", "correctAnswerNum");
   }
   console.log("finalscorepage");
+  //console.log(output);
 }
 
 //push scores to highscores page
@@ -152,20 +139,22 @@ function pushScores() {
   var initials = enterInitials.value;
   var newScores = {
     initials,
-    //correctAnswerNum
-    score
+    correctAnswerNum
+    //score
   };
   if (initials != "") {
     highscores.push(newScores);
     localStorage.setItem("highscores", JSON.stringify(highscores));
     //console.log(initials, correctAnswerNum);
-    console.log(initials, score);
+    //console.log(initials, score);
+    console.log(initials, correctAnswerNum);
     window.location.href = "HighScores.html";
   } else {
     alert("기수와 이름을 입력해주세요!");
   }
 }
 
+//Time Couning
 function startNow() {
   startTime = new Date();
 };
@@ -179,4 +168,12 @@ function endNow() {
 
   //console.log(timeDiff + " seconds");
   //alert(timeDiff + " seconds");
+  /*
+  output.push({
+    number: questions[currentQuestionIndex],
+    timeDiff: timeDiff
+  });
+  */
+  output[currentQuestionIndex].number = questions[currentQuestionIndex];
+  output[currentQuestionIndex].timeDiff = timeDiff;
 }

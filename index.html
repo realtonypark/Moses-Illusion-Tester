@@ -74,6 +74,7 @@
             value="시작"
             id="startQuiz"
             class="btn btn-info btn-lg"
+            onclick="startNow()"
           />
         </div>
       </div>
@@ -84,8 +85,10 @@
         <div class="col-md">
           <h2 id="question-title"></h2>
           <div id="answers" class="btn-group-vertical">
-            <button id="0", onclick="startNow()"></button>
-            <button id="1", onclick="startNow()"></button>
+            <!-- <button id="0", onclick="startNow()"></button> -->
+            <!-- <button id="1", onclick="startNow()"></button> -->
+            <button id="0"></button>
+            <button id="1"></button>
           </div>
           <div id="evaluate-answer"></div>
         </div>
@@ -154,9 +157,9 @@
     <script type="text/javascript" src="javascript/codingQuestions.js"></script>
     <script type="text/javascript" src="javascript/startQuiz.js"></script>
 
-    <!-- Revised code from here -->
+    <!--
     <button onclick="startNow()">Start</button>
     <button onclick="endNow()">End</button>
-
+    -->
   </body>
 </html>
