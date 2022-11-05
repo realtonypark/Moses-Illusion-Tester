@@ -1,3 +1,23 @@
+/** Output Printing */
+/*
+var output = [
+  {
+    number: "#1",
+    startTime: 0,
+    endTime: 0
+  },
+  {
+    number: "#2",
+    startTime: 0,
+    endTime: 0
+  }
+]
+*/
+var output = [
+]
+
+/** Time Counting */
+
 var startBtn = document.querySelector("#startQuiz");
 var startContainer = document.querySelector("#start-container");
 var questionContainer = document.querySelector("#question-container");
@@ -10,10 +30,6 @@ var answers = document.querySelector("#answers");
 var ansEval = document.querySelector("#evaluate-answer");
 var ansEvalFinal = document.querySelector("#evaluate-answer-final");
 var timer = document.querySelector("#timer");
-var bell = new Audio();
-//bell.src = "./오디오 url";
-var buzzer = new Audio();
-//buzzer.src = "./오디오 url";
 
 let currentQuestionIndex = 0;
 let q = questions[currentQuestionIndex];
@@ -29,6 +45,7 @@ answers.addEventListener("click", checkAnswer);
 finalAnswer.addEventListener("click", finalScorePage);
 submitInitials.addEventListener("click", pushScores);
 
+
 //FUNCTIONS 
 function Start() {
   currentQuestionIndex = 0;
@@ -37,6 +54,7 @@ function Start() {
   startContainer.setAttribute("style", "display: none");
   questionContainer.setAttribute("style", "display: block");
   startTimer();
+  startNow();
 }
 
 function startTimer() {
@@ -88,35 +106,16 @@ function renderQuestion() {
 //Check the index of the choice linked to button against answer in array
 function checkAnswer(event) {
   q = questions[currentQuestionIndex];
-  event.preventDefault();
+  //event.preventDefault();
   if (event.target.matches("button")) {
+    
     var userAnswer = questions[currentQuestionIndex].choices[event.target.id];
     console.log(userAnswer);
     var correctAnswer = questions[currentQuestionIndex].answer;
     console.log(correctAnswer);
   }
   if (userAnswer === correctAnswer) {
-    //score += 10;
-    //console.log(score);
     correctAnswerNum += 1;
-  }
-  if (userAnswer === correctAnswer && currentQuestionIndex === 79) {
-    ansEval.style.color = "green";
-    ansEval.style.fontSize = "20px";
-    ansEval.style.fontWeight = "bolder";
-    console.log("Correct", ansEvalFinal);
-    setTimeout(function() {
-      ansEvalFinal.textContent = "";
-    }, 3000);
-  } else {
-    ansEvalFinal.textContent = "Wrong Answer!";
-    ansEvalFinal.style.color = "red";
-    ansEvalFinal.style.fontSize = "20px";
-    ansEvalFinal.style.fontWeight = "bolder";
-    console.log("Wrong", ansEvalFinal);
-    setTimeout(function() {
-      ansEvalFinal.textContent = "";
-    }, 3000);
   }
   nextQuestion();
 }
@@ -179,5 +178,5 @@ function endNow() {
   timeDiff /= 1000;
 
   //console.log(timeDiff + " seconds");
-  alert(timeDiff + " seconds");
+  //alert(timeDiff + " seconds");
 }
